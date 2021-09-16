@@ -57,6 +57,40 @@
           <td>1000</td>
         </tr>
       </table>
-      
+      <hr style="width:100%", align="left">
+      <h3>Algebra</h3>
+      <blockquote site = "https://cp-algorithms.com/algebra/binary-exp.html#toc-tgt-0">An ancient method which appeared about 200 BC in Pingala's Hindu classic Chandah-sutra (and now called left-to-right binary exponentiation) can be described as follows. First write the exponent 25 in binary: 11001.</blockquote>
+      <a href = "https://primes.utm.edu/glossary/page.php?sort=BinaryExponentiation"></a>
+      <pre>long long binpow(long long a, long long b) {
+        if (b == 0)
+            return 1;
+        long long res = binpow(a, b / 2);
+        if (b % 2)
+            return res * res * a;
+        else
+            return res * res;
+    }
+    long long binpow(long long a, long long b) {
+        long long res = 1;
+        while (b > 0) {
+            if (b & 1)
+                res = res * a;
+            a = a * a;
+            b >>= 1;
+        }
+        return res;
+    }
+    long long binpow(long long a, long long b, long long m) {
+        a %= m;
+        long long res = 1;
+        while (b > 0) {
+            if (b & 1)
+                res = res * a % m;
+            a = a * a % m;
+            b >>= 1;
+        }
+        return res;
+    }
+</pre>     
 </body>
 </html>
